@@ -10,3 +10,33 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+body {
+    font-family: "Roboto";
+    background-color: #f3f3f3;
+  }
+  
+  .game-tittle {
+    font-family: "Bangers", cursive;
+    text-align: center;
+    font-size: 80px;
+    color: rgb(13, 231, 209);
+  }
+  
+  .board {
+    justify-content: center;
+    display: flex;
+  }
+  
+  .player-user {
+    height: 400px;
+    width: 400px;
+    border: 1px solid black;
+    margin-right: 30px;
+  }
+  
+  .player-pc {
+    height: 400px;
+    width: 400px;
+    border: 1px solid black;
+  }
+  
