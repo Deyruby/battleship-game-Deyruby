@@ -1,15 +1,4 @@
 
-/* 
-
-    You can write your own styles here...
-    
-    
-    ...Or you can use the import command to include 
-    other sylesheets into your bunde as well, e.j:
-    
-    import 'relative/path/to/stylesheet.scss';
-
-*/
 body {
     font-family: "Roboto";
     background-color: #f3f3f3;
@@ -22,21 +11,69 @@ body {
     color: rgb(13, 231, 209);
   }
   
+  .tittles{
+    display: flex;
+    justify-content: space-evenly
+  }
+  
+  .user-tittle,.cpu-tittle{
+    font-family: "Bangers";
+    text-align:left;
+    color: rgb(13, 231, 209);
+    
+ ;
+  }
+  
+
   .board {
     justify-content: center;
     display: flex;
+    margin-right: 15px;
+    
   }
+
+  .total-board{
+    display: flex;
+    justify-content: center;
+  }
+
+  .vertical-tags{
+    padding-top: 26px;
+  }
+
+.col-tags{
+  border: 1px solid black;
+  height: 50px;
+  width: 30px;
+  margin: 1px;
+  text-align: center;
+  background-color: blueviolet;
+  color: pink;
+  font-weight: bold;
+  display: block;
+  text-align:center;
+ ;
+ }
+  .row-tags{
+   border: 1px solid black;
+   height: 20px;
+   width: 25px;
+   margin: 1px;
+   text-align: center;
+   background-color: blueviolet;
+   color: pink;
+   font-weight: bold;
   
-  .player-user {
-    height: 400px;
-    width: 400px;
-    border: 1px solid black;
-    margin-right: 30px;
+   
   }
-  
-  .player-pc {
-    height: 400px;
-    width: 400px;
+    
+   .rows {
     border: 1px solid black;
-  }
+    height: 50px;
+    width: 50px;
+    background-color: rgb(245, 210, 216);
+   }
+   
+    
+
   
