@@ -52,7 +52,7 @@ body {
   font-weight: bold;
   display: block;
   text-align:center;
- ;
+ 
  }
   .row-tags{
    border: 1px solid black;
@@ -63,9 +63,9 @@ body {
    background-color: blueviolet;
    color: pink;
    font-weight: bold;
-  
-   
   }
+
+   
     
    .rows {
     border: 1px solid black;
@@ -74,6 +74,12 @@ body {
     background-color: rgb(245, 210, 216);
    }
    
-    
+   
+      
+ 
+   
+   
+
+
 
   
