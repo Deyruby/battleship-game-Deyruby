@@ -71,7 +71,13 @@ body {
     border: 1px solid black;
     height: 50px;
     width: 50px;
-    background-color: rgb(245, 210, 216);
+   }
+
+   .gray-row {
+    background-color: gray;
+   }
+   .green-row {
+    background-color: green;
    }
    
    

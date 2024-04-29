@@ -1,46 +1,98 @@
-import React from "react";
+import React, {useState} from "react";
+import Ship from "./ships";
 
 const Cpuboard = () => {
-
+const [userFire, setUSerFire] = useState([''])
 	const tags = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 	const verticalTags = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
 
 	const cpuBoard = [
-		[{ p: "1A", c: true }, { p: "1B", c: true }, { p: "1C", c: true }, { p: "1D", c: true }, { p: "1E", c: true }, { p: "1F", c: false }, { p: "1G", c: false }, { p: "1H", c: false }, { p: "1I", c: false }, { p: "1J", c: true }],
-		[{ p: "2A", c: false }, { p: "2B", c: false }, { p: "2C", c: false }, { p: "2D", c: false }, { p: "2E", c: false }, { p: "2F", c: false }, { p: "2G", c: false }, { p: "2H", c: false }, { p: "2I", c: false }, { p: "2J", c: true }],
-		[{ p: "3A", c: false }, { p: "3B", c: false }, { p: "3C", c: false }, { p: "3D", c: false }, { p: "3E", c: false }, { p: "3F", c: false }, { p: "3G", c: false }, { p: "3H", c: false }, { p: "3I", c: false }, { p: "3J", c: true }],
-		[{ p: "4A", c: false }, { p: "4B", c: false }, { p: "4C", c: false }, { p: "4D", c: true }, { p: "4E", c: true }, { p: "4F", c: true }, { p: "4G", c: false }, { p: "4H", c: false }, { p: "4I", c: false }, { p: "4J", c: true }],
-		[{ p: "5A", c: false }, { p: "5B", c: false }, { p: "5C", c: false }, { p: "5D", c: false }, { p: "5E", c: false }, { p: "5F", c: false }, { p: "5G", c: false }, { p: "5H", c: false }, { p: "5I", c: false }, { p: "5J", c: false }],
-		[{ p: "6A", c: false }, { p: "6B", c: false }, { p: "6C", c: false }, { p: "6D", c: false }, { p: "6E", c: false }, { p: "6F", c: false }, { p: "6G", c: false }, { p: "6H", c: false }, { p: "6I", c: false }, { p: "6J", c: false }],
-		[{ p: "7A", c: true }, { p: "7B", c: false }, { p: "7C", c: false }, { p: "7D", c: false }, { p: "7E", c: false }, { p: "7F", c: false }, { p: "7G", c: false }, { p: "7H", c: false }, { p: "7I", c: false }, { p: "7J", c: false }],
-		[{ p: "8A", c: true }, { p: "8B", c: false }, { p: "8C", c: false }, { p: "8D", c: false }, { p: "8E", c: false }, { p: "8F", c: true }, { p: "8G", c: false }, { p: "8H", c: false }, { p: "8I", c: false }, { p: "8J", c: false }],
-		[{ p: "9A", c: false }, { p: "9B", c: false }, { p: "9C", c: false }, { p: "9D", c: false }, { p: "9E", c: false }, { p: "9F", c: false }, { p: "9G", c: false }, { p: "9H", c: false }, { p: "9I", c: false }, { p: "9J", c: false }],
-		[{ p: "10A", c: false }, { p: "10B", c: false }, { p: "10C", c: false }, { p: "10D", c: false }, { p: "10E", c: false }, { p: "10F", c: false }, { p: "10G", c: false }, { p: "10H", c: false }, { p: "10I", c: false }, { p: "10J", c: false }],
+		[{ coordinate: "1A", color: 'gray' }, { coordinate: "1B", color: 'gray' }, { coordinate: "1C", color: 'gray' }, { coordinate: "1D", color: 'gray' }, { coordinate: "1E", color: 'gray' }, { coordinate: "1F", color: 'gray' }, { coordinate: "1G", color: 'gray' }, { coordinate: "1H", color: 'gray' }, { coordinate: "1I", color: 'gray' }, { coordinate: "1J", color: 'gray' }],
+		[{ coordinate: "2A", color: 'gray' }, { coordinate: "2B", color: 'gray' }, { coordinate: "2C", color: 'gray' }, { coordinate: "2D", color: 'gray' }, { coordinate: "2E", color: 'gray' }, { coordinate: "2F", color: 'gray' }, { coordinate: "2G", color: 'gray' }, { coordinate: "2H", color: 'gray' }, { coordinate: "2I", color: 'gray' }, { coordinate: "2J", color: 'gray' }],
+		[{ coordinate: "3A", color: 'gray' }, { coordinate: "3B", color: 'gray' }, { coordinate: "3C", color: 'gray' }, { coordinate: "3D", color: 'gray' }, { coordinate: "3E", color: 'gray' }, { coordinate: "3F", color: 'gray' }, { coordinate: "3G", color: 'gray' }, { coordinate: "3H", color: 'gray' }, { coordinate: "3I", color: 'gray' }, { coordinate: "3J", color: 'gray' }],
+		[{ coordinate: "4A", color: 'gray' }, { coordinate: "4B", color: 'gray' }, { coordinate: "4C", color: 'gray' }, { coordinate: "4D", color: 'gray' }, { coordinate: "4E", color: 'gray' }, { coordinate: "4F", color: 'gray' }, { coordinate: "4G", color: 'gray' }, { coordinate: "4H", color: 'gray' }, { coordinate: "4I", color: 'gray' }, { coordinate: "4J", color: 'gray' }],
+		[{ coordinate: "5A", color: 'gray' }, { coordinate: "5B", color: 'gray' }, { coordinate: "5C", color: 'gray' }, { coordinate: "5D", color: 'gray' }, { coordinate: "5E", color: 'gray' }, { coordinate: "5F", color: 'gray' }, { coordinate: "5G", color: 'gray' }, { coordinate: "5H", color: 'gray' }, { coordinate: "5I", color: 'gray' }, { coordinate: "5J", color: 'gray' }],
+		[{ coordinate: "6A", color: 'gray' }, { coordinate: "6B", color: 'gray' }, { coordinate: "6C", color: 'gray' }, { coordinate: "6D", color: 'gray' }, { coordinate: "6E", color: 'gray' }, { coordinate: "6F", color: 'gray' }, { coordinate: "6G", color: 'gray' }, { coordinate: "6H", color: 'gray' }, { coordinate: "6I", color: 'gray' }, { coordinate: "6J", color: 'gray' }],
+		[{ coordinate: "7A", color: 'gray' }, { coordinate: "7B", color: 'gray' }, { coordinate: "7C", color: 'gray' }, { coordinate: "7D", color: 'gray' }, { coordinate: "7E", color: 'gray' }, { coordinate: "7F", color: 'gray' }, { coordinate: "7G", color: 'gray' }, { coordinate: "7H", color: 'gray' }, { coordinate: "7I", color: 'gray' }, { coordinate: "7J", color: 'gray' }],
+		[{ coordinate: "8A", color: 'gray' }, { coordinate: "8B", color: 'gray' }, { coordinate: "8C", color: 'gray' }, { coordinate: "8D", color: 'gray' }, { coordinate: "8E", color: 'gray' }, { coordinate: "8F", color: 'gray' }, { coordinate: "8G", color: 'gray' }, { coordinate: "8H", color: 'gray' }, { coordinate: "8I", color: 'gray' }, { coordinate: "8J", color: 'gray' }],
+		[{ coordinate: "9A", color: 'gray' }, { coordinate: "9B", color: 'gray' }, { coordinate: "9C", color: 'gray' }, { coordinate: "9D", color: 'gray' }, { coordinate: "9E", color: 'gray' }, { coordinate: "9F", color: 'gray' }, { coordinate: "9G", color: 'gray' }, { coordinate: "9H", color: 'gray' }, { coordinate: "9I", color: 'gray' }, { coordinate: "9J", color: 'gray' }],
+		[{ coordinate: "10A", color: 'gray' }, { coordinate: "10B", color: 'gray' }, { coordinate: "10C", color: 'gray' }, { coordinate: "10D", color: 'gray' }, { coordinate: "10E", color: 'gray' }, { coordinate: "10F", color: 'gray' }, { coordinate: "10G", color: 'gray' }, { coordinate: "10H", color: 'gray' }, { coordinate: "10I", color: 'gray' }, { coordinate: "10J", color: 'gray' }],
 	]
 
-	const cpuShips = [{ p: "1A", c: true }, { p: "1B", c: true }, { p: "1C", c: true }, { p: "6D", c: false }, { p: "6E", c: false }, { p: "6F", c: false }, { p: "6G", c: false }, { p: "10D", c: false }]
+	//First Combination
+	const greenBoat = [{ coordinate: "1F", color: 'green' }, { coordinate: "1G", color: 'green' }, { coordinate: "1H", color: 'green' }, { coordinate: "1I", color: 'green' }, { coordinate: "1J", color: 'green' }]
+	const greenBoat2= [{ coordinate: "2A", color: 'green' }, { coordinate: "3A", color: 'green' }, { coordinate: "4A", color: 'green' },{ coordinate: "5A", color: 'green' }, { coordinate: "6A", color: 'green' }]
+	
+	const blueBoat = [{ coordinate: "10A", color: 'blue' }, { coordinate: "10B", color: 'blue' }, { coordinate: "10C", color: 'blue' }, { coordinate: "10D", color: 'blue' }]
+	const blueBoat2= [{ coordinate: "2C", color: 'blue' },{ coordinate: "3C", color: 'blue' },{ coordinate: "4C", color: 'blue' },{ coordinate: "5C", color: 'blue' }]
+	
+	const yellowBoat = [{ coordinate: "4J", color: 'yellow' }, { coordinate: "5J", color: 'yellow' }, { coordinate: "6J", color: 'yellow' }]
+	const redBoat = [{ coordinate: "5F", color: 'red' }, { coordinate: "6F", color: 'red' }]
+	const purpleBoat = [{ coordinate: "9H", color: 'purple' }]
+	
+	
+	const firstCpuCombination = [...greenBoat, ...blueBoat, ...yellowBoat, ...redBoat, ...purpleBoat,...greenBoat2, ...blueBoat2]
 
-	return (
+//Second Combination
+	const greenBoat3 =[{ coordinate: "5E", color: 'green' }, { coordinate: "6E", color: 'green'}, { coordinate: "7E", color: 'green'}, { coordinate: "8E", color: 'green'}, { coordinate: "9E", color: 'green'} ]
+	const blueBoat3= [{ coordinate: "4F", color: 'blue' },{ coordinate: "4G", color: 'blue' },{ coordinate: "4H", color: 'blue' },{ coordinate: "4I", color: 'blue' }]
+	const yellowBoat2 = [{ coordinate: "1A", color: 'yellow' }, { coordinate: "2A", color: 'yellow' }, { coordinate: "3A", color: 'yellow' }]
+	const redBoat2 = [{ coordinate: "10H", color: 'red' }, { coordinate: "10I", color: 'red' }]
+	const purpleBoat2 = [{ coordinate: "9B", color: 'purple' }]
+
+	const secondCombination = [...greenBoat3, ...blueBoat3, ...yellowBoat2, ...redBoat2, ...purpleBoat2]
+
+	//Third Combination
+	const greenBoat4=[{ coordinate: "5C", color: 'green' }, { coordinate: "5D", color: 'green'}, { coordinate: "5E", color: 'green'}, { coordinate: "5F", color: 'green'}, { coordinate: "5G", color: 'green'} ]
+	const blueBoat4= [{ coordinate: "7J", color: 'blue' },{ coordinate: "8J", color: 'blue' },{ coordinate: "9J", color: 'blue' },{ coordinate: "10J", color: 'blue' }]
+	const yellowBoat3 = [{ coordinate: "1D", color: 'yellow' }, { coordinate: "2D", color: 'yellow' }, { coordinate: "3D", color: 'yellow' }]
+	
+	const redBoat3 = [{ coordinate: "7H", color: 'red' }, { coordinate: "8H", color: 'red' }]
+	const redBoat4= [{ coordinate: "10A", color: 'red' }, { coordinate: "10B", color: 'red' }]
+
+    const purpleBoat3 = [{ coordinate: "2F", color: 'purple' }]
+	const purpleBoat4 = [{ coordinate: "7E", color: 'purple' }]
+
+	const thirdCombination = [...greenBoat4, ...blueBoat4, ...yellowBoat3, ...redBoat3, ...purpleBoat3,... purpleBoat4, ...redBoat4]
+
+
+	//Fourth Combination
+	const greenBoat4=[{ coordinate: "5C", color: 'green' }, { coordinate: "5D", color: 'green'}, { coordinate: "5E", color: 'green'}, { coordinate: "5F", color: 'green'}, { coordinate: "5G", color: 'green'} ]
+
+	
+
+
+	/*
+const cpuCombination = () => {
+	const randomNumber = Math.random()*10 
+	if (ramdomNumber === 1) return firstCpuCombiantion
+}
+*/
+
+return (
 		<>
-
 			<div className="board">
 				<div className="vertical-tags">
 					{
-						verticalTags.map((element, index) => <th className="col-tags" key={index}>{element}</th>)
+						tags.map((element, index) => <th className="col-tags" key={index}>{element}</th>)
 					}
 				</div>
 				<table>
 					<thead className="table-head">
 						{
-							tags.map((element, index) => <th className="row-tags" key={index}>{element}</th>)
+							verticalTags.map((element, index) => <th className="row-tags" key={index}>{element}</th>)
 						}
 					</thead>
 					<tbody>
-						{cpuBoard.map((element) => {
+						{cpuBoard.map((element, key) => {
 							return (
-								<tr>
+								<tr key={key}>
 									{
-										element.map((item, index) => <td className="rows" key={index}></td>)
+										element.map((item, index) => {
+											const currentBoat = thirdCombination.find((boat) => boat.coordinate === item.coordinate )
+											const hasBeenShoot = userFire.find((fire) => fire === item.coordinate)
+											return <td className={`rows`} style={{backgroundColor: hasBeenShoot ? 'brown' : currentBoat?.color ?? 'gray'}} key={index} />
+										}) 
 									}
 								</tr>)
 						})}
