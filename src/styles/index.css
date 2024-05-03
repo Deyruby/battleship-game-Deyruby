@@ -9,6 +9,7 @@ body {
     text-align: center;
     font-size: 80px;
     color: rgb(13, 231, 209);
+   
   }
   
   .tittles{
@@ -82,15 +83,78 @@ body {
  
  
    .input{
-    width: 90%;
+    width: 80%;
+   margin-left: 30px;
    }
+
+   .tittle-input{
+    display:block;
+   text-align: center;
+   font-weight: bold;
+   color: turquoise;
+   
+   }
+   
+ .container-green{
+  display: flex;
+  margin-top: 10px;
+ }
+ 
+ .p-green{
+  color: green;
+  margin: auto;
+  font-weight: bold;
+ }
+
+ .container-blue{
+  display: flex;
+  margin-top: 10px;
+ }
+ .p-blue{
+  color: blue;
+  margin: auto;
+  font-weight: bold;
+ }
+
+ .container-yellow{
+  display: flex;
+  margin-top: 10px;
+ }
+ .p-yellow{
+  color:yellow;
+  margin: auto;
+  font-weight: bold;
+}
+
+.container-red{
+  display: flex;
+  margin-top: 10px;
+ }
+ .p-red{
+  color:red;
+  margin: auto;
+  font-weight: bold;
+}
+
+.container-purple{
+  display: flex;
+  margin-top: 10px;
+ }
+ .p-purple{
+  color:purple;
+  margin: auto;
+  font-weight: bold;
+}
+
 
 .green-button{
   background-color: green;
   font-weight: bold;
   color:rgb(13, 231, 209);
   display: block;
-  margin-top: 10px
+  margin-top: 10px;
+  margin-left: 10%;
+
 }
 
 .blue-button{
@@ -99,7 +163,8 @@ body {
   color:rgb(13, 231, 209);
   display: block;
   margin-top: 10px;
-  margin-left: 3%
+  margin-left:10%
+
 }
 
 .yellow-button{
@@ -107,7 +172,8 @@ body {
   font-weight: bold;
   color:rgb(13, 231, 209);
   margin-top: 10px;
-  margin-right:3%;
+  margin-left:8%
+
   
 }
 
@@ -116,14 +182,17 @@ body {
   font-weight: bold;
   color:rgb(13, 231, 209);
   display: block;
-  margin-top: 10px;
-  margin-left: 5%
+  margin-top:10px;
+  margin-left:10%
+
 }
 .purple-button{
   background-color: purple;
   font-weight: bold;
   color:rgb(13, 231, 209);
-  margin-top: 10px
+  margin-top: 10px;
+  margin-left:6%
+  
 }
 
 

@@ -28,7 +28,18 @@ const Userboard = () => {
     ]
 
 
-    const handleBoat = async (event, color, position) => {
+    const functionGreen = (e) => {
+        if (userBoardStart.find((position)=> position.color === 'green') ) {
+            alert("SHIP ALREADY EXISTS.")
+        }
+        else {
+            handleBoat(e, 'green', 5)
+        }
+    }
+
+
+
+    const handleBoat = async (event,  color, position) => {
         event.preventDefault()
 
         const coordinates = currentCoordinates.split(',', position)
@@ -39,10 +50,9 @@ const Userboard = () => {
 
     }
 
+   
 
 
-
-    // hacer en el onclick del boton, el boton no lleva submit, llamar la funcion y pasar los parametros, condicion si existe no colocar en el tablero
 
 
 
@@ -51,14 +61,29 @@ const Userboard = () => {
         <>
 
             <div className="board">
-                <div className="buttons">
-                    <p>Write the coordinates to position your ships on the board</p>
-                <input type="text" className="input" name="coordinate" placeholder="Example 3A,3B,3C" onChange={(e) => setCurrentCoordinates(e.target.value)} />
-                <button className="green-button" onClick={(e) => handleBoat(e, 'green', 5)}>Position Green Ship</button>
-                <button className="blue-button" onClick={(e) => handleBoat(e, 'blue', 4)}>Position Blue Ship</button>
-                <button className="yellow-button" onClick={(e) => handleBoat(e, 'yellow', 3)}>Position Yellow Ship</button>
-                <button className="red-button" onClick={(e) => handleBoat(e, 'red', 2)}>Position Red Ship</button>
-                <button className="purple-button" onClick={(e) => handleBoat(e, 'purple', 1)}>Position Purple Ship</button>
+                <div className="container-buttons">
+                    <p className="tittle-input">Write the coordinates to position your ships on the board</p>
+                    <input type="text" className="input" name="coordinate" placeholder="Example 3A,3B,3C" onChange={(e) => setCurrentCoordinates(e.target.value)} />
+                    <div className="container-green">
+                        <button className="green-button" onClick={(e)=>functionGreen(e)}>Position Green Ship</button>
+                        <p className="p-green">Has 5 Coordinates</p>
+                    </div>
+                    <div className="container-blue">
+                        <button className="blue-button" onClick={(e) => handleBoat(e, 'blue', 4)}>Position Blue Ship</button>
+                        <p className="p-blue">Has 4 Coordinates</p>
+                    </div>
+                    <div className="container-yellow">
+                        <button className="yellow-button" onClick={(e) => handleBoat(e, 'yellow', 3)}>Position Yellow Ship</button>
+                        <p className="p-yellow">Has 3 Coordinates</p>
+                    </div>
+                    <div className="container-red">
+                        <button className="red-button" onClick={(e) => handleBoat(e, 'red', 2)}>Position Red Ship</button>
+                        <p className="p-red">Has 2 Coordinates</p>
+                    </div>
+                    <div className="container-purple">
+                        <button className="purple-button" onClick={(e) => handleBoat(e, 'purple', 1)}>Position Purple Ship</button>
+                        <p className="p-purple">Has 1 Coordinate</p>
+                    </div>
                 </div>
                 <div className="vertical-tags">
                     {
