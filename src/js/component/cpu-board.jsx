@@ -110,6 +110,8 @@ return (
 									{
 										element.map((item, index) => {
 											const currentBoat = cpuBoardStart.find((boat) => boat.coordinate === item.coordinate )
+											console.log('CURRENTBOAT', currentBoat)
+											
 											const hasBeenShoot = userFire.find((fire) => fire === item.coordinate)
 											return <td className={`rows`} style={{backgroundColor: hasBeenShoot ? 'brown' : currentBoat?.color ?? 'gray'}} key={index} />
 										}) 

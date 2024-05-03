@@ -21,10 +21,9 @@ body {
     text-align:left;
     color: rgb(13, 231, 209);
     
- ;
+ 
   }
   
-
   .board {
     justify-content: center;
     display: flex;
@@ -80,11 +79,55 @@ body {
     background-color: green;
    }
    
-   
-      
  
-   
-   
+ 
+   .input{
+    width: 90%;
+   }
+
+.green-button{
+  background-color: green;
+  font-weight: bold;
+  color:rgb(13, 231, 209);
+  display: block;
+  margin-top: 10px
+}
+
+.blue-button{
+  background-color: blue;
+  font-weight: bold;
+  color:rgb(13, 231, 209);
+  display: block;
+  margin-top: 10px;
+  margin-left: 3%
+}
+
+.yellow-button{
+  background-color: yellow;
+  font-weight: bold;
+  color:rgb(13, 231, 209);
+  margin-top: 10px;
+  margin-right:3%;
+  
+}
+
+.red-button{
+  background-color: red;
+  font-weight: bold;
+  color:rgb(13, 231, 209);
+  display: block;
+  margin-top: 10px;
+  margin-left: 5%
+}
+.purple-button{
+  background-color: purple;
+  font-weight: bold;
+  color:rgb(13, 231, 209);
+  margin-top: 10px
+}
+
+
+
 
 
 

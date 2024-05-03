@@ -1,10 +1,13 @@
 import { array } from "prop-types";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Userboard = () => {
 
-    const [currentBoats, setCurrentBoats] = useState('')
+    const [currentCoordinates, setCurrentCoordinates] = useState('')
     const [userBoardStart, setUserBoardStart] = useState([])
+    const [userFire, setUSerFire] = useState([''])
+
+
 
 
     const tags = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -25,21 +28,21 @@ const Userboard = () => {
     ]
 
 
+    const handleBoat = async (event, color, position) => {
+        event.preventDefault()
 
-  //*  const handleGreenBoat = () => {
-        //CONVERTIR LO QUE ESTOY ESCRIBIENDO EN EL INPUT A UN ARREGLO LLEGA UN STRING A1,B1,C1, QUIERO QUE SEA UN ARREGLO [A1,B1,C1]
-        // HACER UHN MAP AL ARREGLO DEL PASO 1
-        // const barcoverde = array.map((item)=>({ coordinate : item, color: 'green' }))
-
-       // const coordinates = currentBoats.split(',')
-        //const greenBoat = coordinates.map((item) => ({ coordinate: item, color: 'green' }))
-
-        //return setUserBoardStart([...userBoardStart, ...greenBoat])
+        const coordinates = currentCoordinates.split(',', position)
+        const currentBoat = coordinates.map((item) => ({ coordinate: item, color: color }))
 
 
-        // SETuSERbOARDsTAR([...userBoardStart, ...BARCOVERD])/ GREENBOATS
-   // }//
+        return setUserBoardStart([...userBoardStart, ...currentBoat])
 
+    }
+
+
+
+
+    // hacer en el onclick del boton, el boton no lleva submit, llamar la funcion y pasar los parametros, condicion si existe no colocar en el tablero
 
 
 
@@ -48,11 +51,15 @@ const Userboard = () => {
         <>
 
             <div className="board">
-                <form onSubmit={handleGreenBoat()}>
-                    <label htmlFor="coordinate">Position Ship 1</label>
-                    <input type="text" name="coordinate" placeholder="Coordinates,Example= A1B1C1" onChange={(e) => setCurrentBoats(e.target.value)} />
-                    <button type="submit">GUARDAR bARCO VERDE</button>
-               </form>
+                <div className="buttons">
+                    <p>Write the coordinates to position your ships on the board</p>
+                <input type="text" className="input" name="coordinate" placeholder="Example 3A,3B,3C" onChange={(e) => setCurrentCoordinates(e.target.value)} />
+                <button className="green-button" onClick={(e) => handleBoat(e, 'green', 5)}>Position Green Ship</button>
+                <button className="blue-button" onClick={(e) => handleBoat(e, 'blue', 4)}>Position Blue Ship</button>
+                <button className="yellow-button" onClick={(e) => handleBoat(e, 'yellow', 3)}>Position Yellow Ship</button>
+                <button className="red-button" onClick={(e) => handleBoat(e, 'red', 2)}>Position Red Ship</button>
+                <button className="purple-button" onClick={(e) => handleBoat(e, 'purple', 1)}>Position Purple Ship</button>
+                </div>
                 <div className="vertical-tags">
                     {
                         tags.map((element, index) => <th className="col-tags" key={index}>{element}</th>)
@@ -70,9 +77,11 @@ const Userboard = () => {
                                 <tr key={keyValue}>
                                     {
                                         element.map((item, index) => {
-                                            const currentBoats = userBoardStart.find((boat) => boat.coordinate === item.coordinate)
+                                            const currentPosition = userBoardStart.find((position) => position.coordinate === item.coordinate)
+                                            console.log('CURRENTPOSITION', currentPosition)
                                             //const hasBeenShoot = userFire.find((fire) => fire === item.coordinate)
-                                            return <td className={`rows`} style={{ backgroundColor: currentBoats ? 'green' : item.color }} key={index} />
+
+                                            return <td className={`rows`} style={{ backgroundColor: currentPosition ? currentPosition.color : item.color }} key={index} />
                                         })
                                     }
                                 </tr>)
