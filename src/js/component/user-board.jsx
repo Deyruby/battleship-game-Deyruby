@@ -29,29 +29,134 @@ const Userboard = () => {
 
 
     const functionGreen = (e) => {
-        if (userBoardStart.find((position)=> position.color === 'green') ) {
+        if (userBoardStart.find((position) => position.color === 'green')) {
             alert("SHIP ALREADY EXISTS.")
         }
         else {
-            handleBoat(e, 'green', 5)
+            handleBoatGreen(e, 'green', 5)
         }
     }
 
-
-
-    const handleBoat = async (event,  color, position) => {
+    const handleBoatGreen = async (event, color, position) => {
         event.preventDefault()
 
         const coordinates = currentCoordinates.split(',', position)
-        const currentBoat = coordinates.map((item) => ({ coordinate: item, color: color }))
+        if (coordinates.length === 5) {
+            const currentBoat = coordinates.map((item) => ({ coordinate: item, color: color }))
 
 
-        return setUserBoardStart([...userBoardStart, ...currentBoat])
+            return setUserBoardStart([...userBoardStart, ...currentBoat])
+        }
+        else {
+            alert("You have to write 5 coordinates consecutively")
+        }
+
 
     }
 
-   
 
+
+    const functionBlue = (e) => {
+        if (userBoardStart.find((position) => position.color === 'blue')) {
+            alert("SHIP ALREADY EXISTS.")
+        }
+        else {
+            handleBoatBlue(e, 'blue', 4)
+        }
+    }
+
+    const handleBoatBlue = async (event, color, position) => {
+        event.preventDefault()
+
+        const coordinates = currentCoordinates.split(',', position)
+        if (coordinates.length === 4) {
+            const currentBoat = coordinates.map((item) => ({ coordinate: item, color: color }))
+
+
+            return setUserBoardStart([...userBoardStart, ...currentBoat])
+        }
+        else {
+            alert("You have to write 4 coordinates consecutively")
+        }
+    }
+
+    const functionYellow = (e) => {
+        if (userBoardStart.find((position) => position.color === 'yellow')) {
+            alert("SHIP ALREADY EXISTS.")
+        }
+        else {
+            handleBoatYellow(e, 'yellow', 3)
+        }
+    }
+
+    const handleBoatYellow = async (event, color, position) => {
+        event.preventDefault()
+
+        const coordinates = currentCoordinates.split(',', position)
+        if (coordinates.length === 3) {
+            const currentBoat = coordinates.map((item) => ({ coordinate: item, color: color }))
+
+
+            return setUserBoardStart([...userBoardStart, ...currentBoat])
+        }
+        else {
+            alert("You have to write 3 coordinates consecutively")
+        }
+
+
+    }
+
+    const functionRed = (e) => {
+        if (userBoardStart.find((position) => position.color === 'red')) {
+            alert("SHIP ALREADY EXISTS.")
+        }
+        else {
+            handleBoatRed(e, 'red', 2)
+        }
+    }
+
+    const handleBoatRed= async (event, color, position) => {
+        event.preventDefault()
+
+        const coordinates = currentCoordinates.split(',', position)
+        if (coordinates.length === 2) {
+            const currentBoat = coordinates.map((item) => ({ coordinate: item, color: color }))
+
+
+            return setUserBoardStart([...userBoardStart, ...currentBoat])
+        }
+        else {
+            alert("You have to write 2 coordinates consecutively")
+        }
+
+
+    }
+
+    const functionPurple = (e) => {
+        if (userBoardStart.find((position) => position.color === 'purple')) {
+            alert("SHIP ALREADY EXISTS.")
+        }
+        else {
+            handleBoatPurple(e, 'purple', 1)
+        }
+    }
+
+    const handleBoatPurple= async (event, color, position) => {
+        event.preventDefault()
+
+        const coordinates = currentCoordinates.split(',', position)
+        if (coordinates.length === 1) {
+            const currentBoat = coordinates.map((item) => ({ coordinate: item, color: color }))
+
+
+            return setUserBoardStart([...userBoardStart, ...currentBoat])
+        }
+        else {
+            alert("You have to write 1 coordinate")
+        }
+
+
+    }
 
 
 
@@ -65,23 +170,23 @@ const Userboard = () => {
                     <p className="tittle-input">Write the coordinates to position your ships on the board</p>
                     <input type="text" className="input" name="coordinate" placeholder="Example 3A,3B,3C" onChange={(e) => setCurrentCoordinates(e.target.value)} />
                     <div className="container-green">
-                        <button className="green-button" onClick={(e)=>functionGreen(e)}>Position Green Ship</button>
+                        <button className="green-button" onClick={(e) => functionGreen(e)}>Position Green Ship</button>
                         <p className="p-green">Has 5 Coordinates</p>
                     </div>
                     <div className="container-blue">
-                        <button className="blue-button" onClick={(e) => handleBoat(e, 'blue', 4)}>Position Blue Ship</button>
+                        <button className="blue-button" onClick={(e) => functionBlue(e, 'blue', 4)}>Position Blue Ship</button>
                         <p className="p-blue">Has 4 Coordinates</p>
                     </div>
                     <div className="container-yellow">
-                        <button className="yellow-button" onClick={(e) => handleBoat(e, 'yellow', 3)}>Position Yellow Ship</button>
+                        <button className="yellow-button" onClick={(e) => functionYellow(e, 'yellow', 3)}>Position Yellow Ship</button>
                         <p className="p-yellow">Has 3 Coordinates</p>
                     </div>
                     <div className="container-red">
-                        <button className="red-button" onClick={(e) => handleBoat(e, 'red', 2)}>Position Red Ship</button>
+                        <button className="red-button" onClick={(e) => functionRed(e, 'red', 2)}>Position Red Ship</button>
                         <p className="p-red">Has 2 Coordinates</p>
                     </div>
                     <div className="container-purple">
-                        <button className="purple-button" onClick={(e) => handleBoat(e, 'purple', 1)}>Position Purple Ship</button>
+                        <button className="purple-button" onClick={(e) => functionPurple(e, 'purple', 1)}>Position Purple Ship</button>
                         <p className="p-purple">Has 1 Coordinate</p>
                     </div>
                 </div>

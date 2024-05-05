@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import Ship from "./ships";
+
 
 const Cpuboard = () => {
 const [userFire, setUSerFire] = useState([''])

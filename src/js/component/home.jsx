@@ -1,7 +1,7 @@
 import React from "react";
 import Userboard from "./user-board";
 import Cpuboard from "./cpu-board";
-import Ship from "./ships";
+
 
 
 
