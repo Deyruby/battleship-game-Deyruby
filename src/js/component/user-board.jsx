@@ -28,6 +28,17 @@ const Userboard = () => {
     ]
 
 
+    const mySuperFunction = (item) => {   //VERIFICAR COMO SUMAR UNA COORDENADA CON OTRA EN EL SET
+ 
+        const varAux = item
+        for(let i =1; i<6;i++){
+          varAux =  item ++
+        }
+
+        setCurrentCoordinates(varAux)
+    }
+
+
     const functionGreen = (e) => {
         if (userBoardStart.find((position) => position.color === 'green')) {
             alert("SHIP ALREADY EXISTS.")
@@ -115,7 +126,7 @@ const Userboard = () => {
         }
     }
 
-    const handleBoatRed= async (event, color, position) => {
+    const handleBoatRed = async (event, color, position) => {
         event.preventDefault()
 
         const coordinates = currentCoordinates.split(',', position)
@@ -141,7 +152,7 @@ const Userboard = () => {
         }
     }
 
-    const handleBoatPurple= async (event, color, position) => {
+    const handleBoatPurple = async (event, color, position) => {
         event.preventDefault()
 
         const coordinates = currentCoordinates.split(',', position)
@@ -158,8 +169,9 @@ const Userboard = () => {
 
     }
 
+   
 
-
+    console.log('currentCoordinates', currentCoordinates)
 
 
     return (
@@ -168,25 +180,24 @@ const Userboard = () => {
             <div className="board">
                 <div className="container-buttons">
                     <p className="tittle-input">Write the coordinates to position your ships on the board</p>
-                    <input type="text" className="input" name="coordinate" placeholder="Example 3A,3B,3C" onChange={(e) => setCurrentCoordinates(e.target.value)} />
                     <div className="container-green">
-                        <button className="green-button" onClick={(e) => functionGreen(e)}>Position Green Ship</button>
+                        <button className="green-button" onClick={functionGreen}>Position Green Ship</button>
                         <p className="p-green">Has 5 Coordinates</p>
                     </div>
                     <div className="container-blue">
-                        <button className="blue-button" onClick={(e) => functionBlue(e, 'blue', 4)}>Position Blue Ship</button>
+                        <button className="blue-button" onClick={functionBlue}>Position Blue Ship</button>
                         <p className="p-blue">Has 4 Coordinates</p>
                     </div>
                     <div className="container-yellow">
-                        <button className="yellow-button" onClick={(e) => functionYellow(e, 'yellow', 3)}>Position Yellow Ship</button>
+                        <button className="yellow-button" onClick={functionYellow}>Position Yellow Ship</button>
                         <p className="p-yellow">Has 3 Coordinates</p>
                     </div>
                     <div className="container-red">
-                        <button className="red-button" onClick={(e) => functionRed(e, 'red', 2)}>Position Red Ship</button>
+                        <button className="red-button" onClick={functionRed}>Position Red Ship</button>
                         <p className="p-red">Has 2 Coordinates</p>
                     </div>
                     <div className="container-purple">
-                        <button className="purple-button" onClick={(e) => functionPurple(e, 'purple', 1)}>Position Purple Ship</button>
+                        <button className="purple-button" onClick={functionPurple}>Position Purple Ship</button>
                         <p className="p-purple">Has 1 Coordinate</p>
                     </div>
                 </div>
@@ -205,13 +216,16 @@ const Userboard = () => {
                         {gameBoard.map((element, keyValue) => {
                             return (
                                 <tr key={keyValue}>
+
                                     {
                                         element.map((item, index) => {
+
                                             const currentPosition = userBoardStart.find((position) => position.coordinate === item.coordinate)
-                                            console.log('CURRENTPOSITION', currentPosition)
+
                                             //const hasBeenShoot = userFire.find((fire) => fire === item.coordinate)
 
-                                            return <td className={`rows`} style={{ backgroundColor: currentPosition ? currentPosition.color : item.color }} key={index} />
+
+                                            return <td className={`rows`} onClick={() => mySuperFunction(item.coordinate)} style={{ backgroundColor: currentPosition ? currentPosition.color : 'pink' }} key={index} />
                                         })
                                     }
                                 </tr>)
