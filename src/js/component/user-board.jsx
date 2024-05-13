@@ -1,11 +1,12 @@
-import { array } from "prop-types";
-import React, { useState, useEffect } from "react";
+
+import React, { useState} from "react";
 
 const Userboard = () => {
 
-    const [currentCoordinates, setCurrentCoordinates] = useState('')
+    const [currentCoordinates, setCurrentCoordinates] = useState([])
     const [userBoardStart, setUserBoardStart] = useState([])
     const [userFire, setUSerFire] = useState([''])
+
 
 
 
@@ -27,39 +28,45 @@ const Userboard = () => {
 
     ]
 
+    console.log('USERBOARDSTART', userBoardStart)
 
-    const mySuperFunction = (item) => {   //VERIFICAR COMO SUMAR UNA COORDENADA CON OTRA EN EL SET
- 
-        const varAux = item
-        for(let i =1; i<6;i++){
-          varAux =  item ++
+
+    const mySuperFunction = (item) => {
+
+        if (userBoardStart.find((theItem) => theItem.coordinate === item)) {
+            alert('Coordinate not available, select other')
+        }
+        else {
+
+
+
+            return setCurrentCoordinates([...currentCoordinates, item])
         }
 
-        setCurrentCoordinates(varAux)
     }
 
 
-    const functionGreen = (e) => {
+    console.log('CURRENTCOOR', currentCoordinates)
+
+    const functionGreen = () => {
+
         if (userBoardStart.find((position) => position.color === 'green')) {
             alert("SHIP ALREADY EXISTS.")
         }
         else {
-            handleBoatGreen(e, 'green', 5)
+            handleBoatGreen('green')
+            setCurrentCoordinates([])
         }
     }
 
-    const handleBoatGreen = async (event, color, position) => {
-        event.preventDefault()
-
-        const coordinates = currentCoordinates.split(',', position)
-        if (coordinates.length === 5) {
-            const currentBoat = coordinates.map((item) => ({ coordinate: item, color: color }))
-
+    const handleBoatGreen = (color) => {
+        if (currentCoordinates.length === 5) {
+            const currentBoat = currentCoordinates.map((item) => ({ coordinate: item, color: color }))
 
             return setUserBoardStart([...userBoardStart, ...currentBoat])
         }
         else {
-            alert("You have to write 5 coordinates consecutively")
+            alert("You have to select 5 coordinates consecutively")
         }
 
 
@@ -67,111 +74,107 @@ const Userboard = () => {
 
 
 
-    const functionBlue = (e) => {
+    const functionBlue = () => {
         if (userBoardStart.find((position) => position.color === 'blue')) {
             alert("SHIP ALREADY EXISTS.")
         }
         else {
-            handleBoatBlue(e, 'blue', 4)
+
+            handleBoatBlue('blue', 4)
+            setCurrentCoordinates([])
         }
     }
 
-    const handleBoatBlue = async (event, color, position) => {
-        event.preventDefault()
-
-        const coordinates = currentCoordinates.split(',', position)
-        if (coordinates.length === 4) {
-            const currentBoat = coordinates.map((item) => ({ coordinate: item, color: color }))
-
+    const handleBoatBlue = (color) => {
+        if (currentCoordinates.length === 4) {
+            const currentBoat = currentCoordinates.map((item) => ({ coordinate: item, color: color }))
 
             return setUserBoardStart([...userBoardStart, ...currentBoat])
         }
         else {
-            alert("You have to write 4 coordinates consecutively")
+            alert("You have to select 4 coordinates consecutively")
         }
     }
 
-    const functionYellow = (e) => {
+    const functionYellow = () => {
         if (userBoardStart.find((position) => position.color === 'yellow')) {
             alert("SHIP ALREADY EXISTS.")
         }
         else {
-            handleBoatYellow(e, 'yellow', 3)
+            handleBoatYellow('yellow')
+            setCurrentCoordinates([])
+
         }
     }
 
-    const handleBoatYellow = async (event, color, position) => {
-        event.preventDefault()
-
-        const coordinates = currentCoordinates.split(',', position)
-        if (coordinates.length === 3) {
-            const currentBoat = coordinates.map((item) => ({ coordinate: item, color: color }))
+    const handleBoatYellow = (color) => {
+        if (currentCoordinates.length === 3) {
+            const currentBoat = currentCoordinates.map((item) => ({ coordinate: item, color: color }))
 
 
             return setUserBoardStart([...userBoardStart, ...currentBoat])
         }
         else {
-            alert("You have to write 3 coordinates consecutively")
+            alert("You have to select 3 coordinates consecutively")
         }
 
 
     }
 
-    const functionRed = (e) => {
+    const functionRed = () => {
         if (userBoardStart.find((position) => position.color === 'red')) {
             alert("SHIP ALREADY EXISTS.")
         }
         else {
-            handleBoatRed(e, 'red', 2)
+            handleBoatRed('red')
+            setCurrentCoordinates([])
         }
     }
 
-    const handleBoatRed = async (event, color, position) => {
-        event.preventDefault()
+    const handleBoatRed = (color) => {
 
-        const coordinates = currentCoordinates.split(',', position)
-        if (coordinates.length === 2) {
-            const currentBoat = coordinates.map((item) => ({ coordinate: item, color: color }))
+
+        if (currentCoordinates.length === 2) {
+            const currentBoat = currentCoordinates.map((item) => ({ coordinate: item, color: color }))
 
 
             return setUserBoardStart([...userBoardStart, ...currentBoat])
         }
         else {
-            alert("You have to write 2 coordinates consecutively")
+            alert("You have to select 2 coordinates consecutively")
         }
 
 
     }
 
-    const functionPurple = (e) => {
+    const functionPurple = () => {
         if (userBoardStart.find((position) => position.color === 'purple')) {
             alert("SHIP ALREADY EXISTS.")
         }
         else {
-            handleBoatPurple(e, 'purple', 1)
+            handleBoatPurple('purple')
+            setCurrentCoordinates([])
         }
     }
 
-    const handleBoatPurple = async (event, color, position) => {
-        event.preventDefault()
+    const handleBoatPurple = (color) => {
 
-        const coordinates = currentCoordinates.split(',', position)
-        if (coordinates.length === 1) {
-            const currentBoat = coordinates.map((item) => ({ coordinate: item, color: color }))
+        if (currentCoordinates.length === 1) {
+            const currentBoat = currentCoordinates.map((item) => ({ coordinate: item, color: color }))
 
 
             return setUserBoardStart([...userBoardStart, ...currentBoat])
         }
         else {
-            alert("You have to write 1 coordinate")
+            alert("You have to select 1 coordinate")
         }
 
 
     }
 
-   
 
-    console.log('currentCoordinates', currentCoordinates)
+
+
 
 
     return (
@@ -179,25 +182,25 @@ const Userboard = () => {
 
             <div className="board">
                 <div className="container-buttons">
-                    <p className="tittle-input">Write the coordinates to position your ships on the board</p>
+                    <p className="tittle-input">Select the coordinates on the board to position your ships</p>
                     <div className="container-green">
-                        <button className="green-button" onClick={functionGreen}>Position Green Ship</button>
+                        <button className="green-button" onClick={() => functionGreen()}>Position Green Ship</button>
                         <p className="p-green">Has 5 Coordinates</p>
                     </div>
                     <div className="container-blue">
-                        <button className="blue-button" onClick={functionBlue}>Position Blue Ship</button>
+                        <button className="blue-button" onClick={() => functionBlue()}>Position Blue Ship</button>
                         <p className="p-blue">Has 4 Coordinates</p>
                     </div>
                     <div className="container-yellow">
-                        <button className="yellow-button" onClick={functionYellow}>Position Yellow Ship</button>
+                        <button className="yellow-button" onClick={() => functionYellow()}>Position Yellow Ship</button>
                         <p className="p-yellow">Has 3 Coordinates</p>
                     </div>
                     <div className="container-red">
-                        <button className="red-button" onClick={functionRed}>Position Red Ship</button>
+                        <button className="red-button" onClick={() => functionRed()}>Position Red Ship</button>
                         <p className="p-red">Has 2 Coordinates</p>
                     </div>
                     <div className="container-purple">
-                        <button className="purple-button" onClick={functionPurple}>Position Purple Ship</button>
+                        <button className="purple-button" onClick={() => functionPurple()}>Position Purple Ship</button>
                         <p className="p-purple">Has 1 Coordinate</p>
                     </div>
                 </div>
@@ -220,12 +223,14 @@ const Userboard = () => {
                                     {
                                         element.map((item, index) => {
 
+                                            //const transitionalStyle = currentCoordinates.some((place)=> place.coordinate === item.coordinate)
+                                            // console.log('TRANSITIONALSTYLE', transitionalStyle)
+                                            const currentPlace = currentCoordinates.some((position) => position === item.coordinate)
                                             const currentPosition = userBoardStart.find((position) => position.coordinate === item.coordinate)
 
                                             //const hasBeenShoot = userFire.find((fire) => fire === item.coordinate)
 
-
-                                            return <td className={`rows`} onClick={() => mySuperFunction(item.coordinate)} style={{ backgroundColor: currentPosition ? currentPosition.color : 'pink' }} key={index} />
+                                            return <td className={`rows`} onClick={() => mySuperFunction(item.coordinate)} style={{ backgroundColor: currentPlace? 'white':(currentPosition ? currentPosition.color : item.color) }} key={index} />
                                         })
                                     }
                                 </tr>)
