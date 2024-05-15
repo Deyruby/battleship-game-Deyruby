@@ -1,11 +1,11 @@
 
-import React, { useState} from "react";
+import React, { useState } from "react";
 
 const Userboard = () => {
 
     const [currentCoordinates, setCurrentCoordinates] = useState([])
     const [userBoardStart, setUserBoardStart] = useState([])
-    const [userFire, setUSerFire] = useState([''])
+    const [userFire, setUSerFire] = useState([])
 
 
 
@@ -28,9 +28,6 @@ const Userboard = () => {
 
     ]
 
-    console.log('USERBOARDSTART', userBoardStart)
-
-
     const mySuperFunction = (item) => {
 
         if (userBoardStart.find((theItem) => theItem.coordinate === item)) {
@@ -44,9 +41,7 @@ const Userboard = () => {
         }
 
     }
-
-
-    console.log('CURRENTCOOR', currentCoordinates)
+   
 
     const functionGreen = () => {
 
@@ -172,74 +167,68 @@ const Userboard = () => {
 
     }
 
-
-
-
-
-
-    return (
-        <>
-
-            <div className="board">
-                <div className="container-buttons">
-                    <p className="tittle-input">Select the coordinates on the board to position your ships</p>
-                    <div className="container-green">
-                        <button className="green-button" onClick={() => functionGreen()}>Position Green Ship</button>
-                        <p className="p-green">Has 5 Coordinates</p>
-                    </div>
-                    <div className="container-blue">
-                        <button className="blue-button" onClick={() => functionBlue()}>Position Blue Ship</button>
-                        <p className="p-blue">Has 4 Coordinates</p>
-                    </div>
-                    <div className="container-yellow">
-                        <button className="yellow-button" onClick={() => functionYellow()}>Position Yellow Ship</button>
-                        <p className="p-yellow">Has 3 Coordinates</p>
-                    </div>
-                    <div className="container-red">
-                        <button className="red-button" onClick={() => functionRed()}>Position Red Ship</button>
-                        <p className="p-red">Has 2 Coordinates</p>
-                    </div>
-                    <div className="container-purple">
-                        <button className="purple-button" onClick={() => functionPurple()}>Position Purple Ship</button>
-                        <p className="p-purple">Has 1 Coordinate</p>
-                    </div>
+return (
+    <>
+        <div className="board">
+            <div className="container-buttons">
+                <p className="tittle-input">Select the coordinates on the board to position your ships</p>
+                <div className="container-green">
+                    <button className="green-button" onClick={() => functionGreen()}>Position Green Ship</button>
+                    <p className="p-green">Has 5 Coordinates</p>
                 </div>
-                <div className="vertical-tags">
-                    {
-                        tags.map((element, index) => <th className="col-tags" key={index}>{element}</th>)
-                    }
+                <div className="container-blue">
+                    <button className="blue-button" onClick={() => functionBlue()}>Position Blue Ship</button>
+                    <p className="p-blue">Has 4 Coordinates</p>
                 </div>
-                <table>
-                    <thead className="table-head">
-                        {
-                            verticalTags.map((element, index) => <th className="row-tags" key={index}>{element}</th>)
-                        }
-                    </thead>
-                    <tbody>
-                        {gameBoard.map((element, keyValue) => {
-                            return (
-                                <tr key={keyValue}>
-
-                                    {
-                                        element.map((item, index) => {
-
-                                            //const transitionalStyle = currentCoordinates.some((place)=> place.coordinate === item.coordinate)
-                                            // console.log('TRANSITIONALSTYLE', transitionalStyle)
-                                            const currentPlace = currentCoordinates.some((position) => position === item.coordinate)
-                                            const currentPosition = userBoardStart.find((position) => position.coordinate === item.coordinate)
-
-                                            //const hasBeenShoot = userFire.find((fire) => fire === item.coordinate)
-
-                                            return <td className={`rows`} onClick={() => mySuperFunction(item.coordinate)} style={{ backgroundColor: currentPlace? 'white':(currentPosition ? currentPosition.color : item.color) }} key={index} />
-                                        })
-                                    }
-                                </tr>)
-                        })}
-                    </tbody>
-                </table>
+                <div className="container-yellow">
+                    <button className="yellow-button" onClick={() => functionYellow()}>Position Yellow Ship</button>
+                    <p className="p-yellow">Has 3 Coordinates</p>
+                </div>
+                <div className="container-red">
+                    <button className="red-button" onClick={() => functionRed()}>Position Red Ship</button>
+                    <p className="p-red">Has 2 Coordinates</p>
+                </div>
+                <div className="container-purple">
+                    <button className="purple-button" onClick={() => functionPurple()}>Position Purple Ship</button>
+                    <p className="p-purple">Has 1 Coordinate</p>
+                </div>
+                <button className="fire">Fire</button>
             </div>
-        </>
-    );
+            <div className="vertical-tags">
+                {
+                    tags.map((element, index) => <th className="col-tags" key={index}>{element}</th>)
+                }
+            </div>
+            <table>
+                <thead className="table-head">
+                    {
+                        verticalTags.map((element, index) => <th className="row-tags" key={index}>{element}</th>)
+                    }
+                </thead>
+                <tbody>
+                    {gameBoard.map((element, keyValue) => {
+                        return (
+                            <tr key={keyValue}>
+
+                                {
+                                    element.map((item, index) => {
+
+                                       
+                                        const currentPlace = currentCoordinates.some((position) => position === item.coordinate)
+                                        const currentPosition = userBoardStart.find((position) => position.coordinate === item.coordinate)
+
+                                        const hasBeenShoot = userFire.find((fire) => fire === item.coordinate)
+
+                                        return <td className={`rows`} onClick={() => mySuperFunction(item.coordinate)}  style={{ backgroundColor: currentPlace ? 'white' : (currentPosition ? currentPosition.color : hasBeenShoot? 'brown': item.color) }} key={index} />
+                                    })
+                                }
+                            </tr>)
+                    })}
+                </tbody>
+            </table>
+        </div>
+    </>
+);
 
 };
 
