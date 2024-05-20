@@ -8,7 +8,7 @@ const Userboard = () => {
 
     const [currentCoordinates, setCurrentCoordinates] = useState([])
     const [userBoardStart, setUserBoardStart] = useState([])
-    const [userFire, setUSerFire] = useState(['10I', '10J'])
+    const [userFire, setUSerFire] = useState([])
 
 
 
