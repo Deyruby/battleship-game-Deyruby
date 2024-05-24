@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import useGameShootsContext from "../hooks/useGameShootsContext";
 
 const cpuBoardInit = [
 	[{ coordinate: "1A", ocupation: 0, color: 'gray' }, { coordinate: "1B", ocupation: 0, color: 'gray' }, { coordinate: "1C", ocupation: 0, color: 'gray' }, { coordinate: "1D", ocupation: 0, color: 'gray' }, { coordinate: "1E", ocupation: 0, color: 'gray' }, { coordinate: "1F", ocupation: 0, color: 'gray' }, { coordinate: "1G", ocupation: 0, color: 'gray' }, { coordinate: "1H", ocupation: 0, color: 'gray' }, { coordinate: "1I", ocupation: 0, color: 'gray' }, { coordinate: "1J", ocupation: 0, color: 'gray' }],
@@ -13,7 +14,7 @@ const cpuBoardInit = [
 	[{ coordinate: "10A", ocupation: 0, color: 'gray' }, { coordinate: "10B", ocupation: 0, color: 'gray' }, { coordinate: "10C", ocupation: 0, color: 'gray' }, { coordinate: "10D", ocupation: 0, color: 'gray' }, { coordinate: "10E", ocupation: 0, color: 'gray' }, { coordinate: "10F", ocupation: 0, color: 'gray' }, { coordinate: "10G", ocupation: 0, color: 'gray' }, { coordinate: "10H", ocupation: 0, color: 'gray' }, { coordinate: "10I", ocupation: 0, color: 'gray' }, { coordinate: "10J", ocupation: 0, color: 'gray' }],
 ]
 const Cpuboard = () => {
-	const [userFire, setUSerFire] = useState([])
+	const { userFire, setUSerFire } = useGameShootsContext()
 	const [cpuBoard, setCpuBoard] = useState(cpuBoardInit)
 
 
@@ -21,7 +22,7 @@ const Cpuboard = () => {
 		cpuCombination()
 	}, [])
 
-	
+
 
 
 	const tags = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -101,7 +102,7 @@ const Cpuboard = () => {
 				}
 
 			})
-		}) 
+		})
 		setCpuBoard(variable)
 	}
 
@@ -121,7 +122,7 @@ const Cpuboard = () => {
 			cpuBoardStyle[key][index].color = 'brown'
 
 		}
-		
+
 
 		setUSerFire([...userFire, item.coordinate])
 		setCpuBoard(cpuBoardStyle)
@@ -152,7 +153,7 @@ const Cpuboard = () => {
 
 											//const hasBeenShoot = userFire.find((fire) => fire === item.coordinate)
 
-											return <td className={`rows`} onClick={() => fire(item, key, index)} style={{ backgroundColor: item.color }} key={index} />
+											return <td className={`rows`} onClick={() => fire(item, key, index)} style={{ backgroundColor: item.color }} key={index} >{item.ocupation}</td>
 
 										})
 									}
