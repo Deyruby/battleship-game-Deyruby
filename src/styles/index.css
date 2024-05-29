@@ -1,47 +1,43 @@
-
 body {
-    font-family: "Roboto";
-    background-color: #f3f3f3;
-  }
-  
-  .game-tittle {
-    font-family: "Bangers", cursive;
-    text-align: center;
-    font-size: 80px;
-    color: rgb(13, 231, 209);
-   
-  }
-  
-  .tittles{
-    display: flex;
-    justify-content: space-evenly
-  }
-  
-  .user-tittle,.cpu-tittle{
-    font-family: "Bangers";
-    text-align:left;
-    color: rgb(13, 231, 209);
-    
- 
-  }
-  
-  .board {
-    justify-content: center;
-    display: flex;
-    margin-right: 15px;
-    
-  }
+  font-family: "Roboto";
+  background-color: #f3f3f3;
+}
 
-  .total-board{
-    display: flex;
-    justify-content: center;
-  }
+.game-tittle {
+  font-family: "Bangers", cursive;
+  text-align: center;
+  font-size: 80px;
+  color: rgb(13, 231, 209);
+}
 
-  .vertical-tags{
-    padding-top: 26px;
-  }
+.tittles {
+  display: flex;
+  justify-content: space-evenly;
+}
 
-.col-tags{
+.user-tittle,
+.cpu-tittle {
+  font-family: "Bangers";
+  text-align: left;
+  color: rgb(13, 231, 209);
+}
+
+.board {
+  justify-content: center;
+  display: flex;
+  margin-right: 15px;
+}
+
+.total-board {
+  display: flex;
+  justify-content: center;
+}
+
+.vertical-tags {
+  padding-top: 26px;
+}
+
+.col-tags {
   border: 1px solid black;
   height: 50px;
   width: 30px;
@@ -51,158 +47,143 @@ body {
   color: pink;
   font-weight: bold;
   display: block;
-  text-align:center;
- 
- }
-  .row-tags{
-   border: 1px solid black;
-   height: 20px;
-   width: 25px;
-   margin: 1px;
-   text-align: center;
-   background-color: blueviolet;
-   color: pink;
-   font-weight: bold;
-  }
+  text-align: center;
+}
+.row-tags {
+  border: 1px solid black;
+  height: 20px;
+  width: 25px;
+  margin: 1px;
+  text-align: center;
+  background-color: blueviolet;
+  color: pink;
+  font-weight: bold;
+}
 
-   
-    
-   .rows {
-    border: 1px solid black;
-    height: 50px;
-    width: 50px;
-   }
+.rows {
+  border: 1px solid black;
+  height: 50px;
+  width: 50px;
+}
 
-   .gray-row {
-    background-color: gray;
-   }
-   .green-row {
-    background-color: green;
-   }
-   
- 
- 
-   .input{
-    width: 80%;
-   margin-left: 30px;
-   }
+.gray-row {
+  background-color: gray;
+}
+.green-row {
+  background-color: green;
+}
 
-   .tittle-input{
-    display:block;
-   text-align: center;
-   font-weight: bold;
-   color: turquoise;
-   
-   }
-   
- .container-green{
+.input {
+  width: 80%;
+  margin-left: 30px;
+}
+
+.tittle-input {
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  color: turquoise;
+}
+
+.container-green {
   display: flex;
   margin-top: 10px;
- }
- 
- .p-green{
+}
+
+.p-green {
   color: green;
   margin: auto;
   font-weight: bold;
- }
+}
 
- .container-blue{
+.container-blue {
   display: flex;
   margin-top: 10px;
- }
- .p-blue{
+}
+.p-blue {
   color: blue;
   margin: auto;
   font-weight: bold;
- }
+}
 
- .container-yellow{
+.container-yellow {
   display: flex;
   margin-top: 10px;
- }
- .p-yellow{
-  color:yellow;
+}
+.p-yellow {
+  color: yellow;
   margin: auto;
   font-weight: bold;
 }
 
-.container-red{
+.container-red {
   display: flex;
   margin-top: 10px;
- }
- .p-red{
-  color:red;
+}
+.p-red {
+  color: red;
   margin: auto;
   font-weight: bold;
 }
 
-.container-purple{
+.container-purple {
   display: flex;
   margin-top: 10px;
- }
- .p-purple{
-  color:purple;
+}
+.p-purple {
+  color: purple;
   margin: auto;
   font-weight: bold;
 }
 
-
-.green-button{
+.green-button {
   background-color: green;
   font-weight: bold;
-  color:rgb(13, 231, 209);
+  color: rgb(13, 231, 209);
   display: block;
   margin-top: 10px;
   margin-left: 10%;
-
 }
 
-.blue-button{
+.blue-button {
   background-color: blue;
   font-weight: bold;
-  color:rgb(13, 231, 209);
+  color: rgb(13, 231, 209);
   display: block;
   margin-top: 10px;
-  margin-left:10%
-
+  margin-left: 10%;
 }
 
-.yellow-button{
+.yellow-button {
   background-color: yellow;
   font-weight: bold;
-  color:rgb(13, 231, 209);
+  color: rgb(13, 231, 209);
   margin-top: 10px;
-  margin-left:8%
-
-  
+  margin-left: 8%;
 }
 
-.red-button{
+.red-button {
   background-color: red;
   font-weight: bold;
-  color:rgb(13, 231, 209);
+  color: rgb(13, 231, 209);
   display: block;
-  margin-top:10px;
-  margin-left:10%
-
+  margin-top: 10px;
+  margin-left: 10%;
 }
-.purple-button{
+.purple-button {
   background-color: purple;
   font-weight: bold;
-  color:rgb(13, 231, 209);
+  color: rgb(13, 231, 209);
   margin-top: 10px;
-  margin-left:6%
-  
+  margin-left: 6%;
 }
 
-
-.fire{
+.fire {
   margin-left: 100px;
-  margin-top:50px
+  margin-top: 50px;
 }
 
-
-
-
-
-  
+.star-game {
+  padding-top: 50px;
+  margin-left: 60px;
+}

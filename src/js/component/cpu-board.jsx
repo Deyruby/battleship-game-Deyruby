@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import useGameShootsContext from "../hooks/useGameShootsContext";
+
+
 
 const cpuBoardInit = [
 	[{ coordinate: "1A", ocupation: 0, color: 'gray' }, { coordinate: "1B", ocupation: 0, color: 'gray' }, { coordinate: "1C", ocupation: 0, color: 'gray' }, { coordinate: "1D", ocupation: 0, color: 'gray' }, { coordinate: "1E", ocupation: 0, color: 'gray' }, { coordinate: "1F", ocupation: 0, color: 'gray' }, { coordinate: "1G", ocupation: 0, color: 'gray' }, { coordinate: "1H", ocupation: 0, color: 'gray' }, { coordinate: "1I", ocupation: 0, color: 'gray' }, { coordinate: "1J", ocupation: 0, color: 'gray' }],
@@ -13,8 +14,8 @@ const cpuBoardInit = [
 	[{ coordinate: "9A", ocupation: 0, color: 'gray' }, { coordinate: "9B", ocupation: 0, color: 'gray' }, { coordinate: "9C", ocupation: 0, color: 'gray' }, { coordinate: "9D", ocupation: 0, color: 'gray' }, { coordinate: "9E", ocupation: 0, color: 'gray' }, { coordinate: "9F", ocupation: 0, color: 'gray' }, { coordinate: "9G", ocupation: 0, color: 'gray' }, { coordinate: "9H", ocupation: 0, color: 'gray' }, { coordinate: "9I", ocupation: 0, color: 'gray' }, { coordinate: "9J", ocupation: 0, color: 'gray' }],
 	[{ coordinate: "10A", ocupation: 0, color: 'gray' }, { coordinate: "10B", ocupation: 0, color: 'gray' }, { coordinate: "10C", ocupation: 0, color: 'gray' }, { coordinate: "10D", ocupation: 0, color: 'gray' }, { coordinate: "10E", ocupation: 0, color: 'gray' }, { coordinate: "10F", ocupation: 0, color: 'gray' }, { coordinate: "10G", ocupation: 0, color: 'gray' }, { coordinate: "10H", ocupation: 0, color: 'gray' }, { coordinate: "10I", ocupation: 0, color: 'gray' }, { coordinate: "10J", ocupation: 0, color: 'gray' }],
 ]
-const Cpuboard = () => {
-	const { userFire, setUSerFire } = useGameShootsContext()
+const Cpuboard = ({ userFire, setUserFire, turn, setTurn }) => {
+
 	const [cpuBoard, setCpuBoard] = useState(cpuBoardInit)
 
 
@@ -23,14 +24,8 @@ const Cpuboard = () => {
 	}, [])
 
 
-
-
 	const tags = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 	const verticalTags = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
-
-
-
-
 
 	//First Combination
 	const greenBoat1 = [{ coordinate: "1F", ocupation: 5, color: 'gray' }, { coordinate: "1G", ocupation: 5, color: 'gray' }, { coordinate: "1H", ocupation: 5, color: 'gray' }, { coordinate: "1I", ocupation: 5, color: 'gray' }, { coordinate: "1J", ocupation: 5, color: 'gray' }]
@@ -106,6 +101,7 @@ const Cpuboard = () => {
 		setCpuBoard(variable)
 	}
 
+	// EJECUTAR FUNCION SOLO SI EL TURNO ESTA EN TRUE
 
 	const fire = (item, key, index) => {
 		const currentBox = cpuBoard[key][index]
@@ -123,12 +119,30 @@ const Cpuboard = () => {
 
 		}
 
+		const coordinateShooted = userFire.some((parameter) => parameter === item.coordinate)
+		if (coordinateShooted) {
+			alert('Shooted, select another target')
+		}
+		else {
+			setUserFire([...userFire, item.coordinate])
+		}
 
-		setUSerFire([...userFire, item.coordinate])
 		setCpuBoard(cpuBoardStyle)
+		console.log('userFire', userFire)
 
 
 	}
+
+	const theTurn = (item, key, index) => {
+		if (turn) {
+			fire(item, key, index)
+			setTurn(false)
+		}
+	}
+
+
+
+	console.log('TURNO', turn)
 	return (
 		<>
 			<div className="board">
@@ -153,7 +167,7 @@ const Cpuboard = () => {
 
 											//const hasBeenShoot = userFire.find((fire) => fire === item.coordinate)
 
-											return <td className={`rows`} onClick={() => fire(item, key, index)} style={{ backgroundColor: item.color }} key={index} >{item.ocupation}</td>
+											return <td className={`rows`} onClick={() => theTurn(item, key, index)} style={{ backgroundColor: item.color }} key={index} >{item.ocupation}</td>
 
 										})
 									}

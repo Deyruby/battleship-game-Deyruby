@@ -8,11 +8,11 @@ import "../styles/index.css";
 
 //import your own components
 import Home from "./component/home.jsx";
-import { GameShootsContextProvider } from "./context/GameShootsContext.jsx";
+
 
 //render your react application
 ReactDOM.render(
-    <GameShootsContextProvider >
-        <Home />
-    </GameShootsContextProvider>,
+
+    <Home />
+    ,
     document.querySelector("#app"));

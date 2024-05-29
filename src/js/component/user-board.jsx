@@ -2,18 +2,50 @@
 import React, { useState, useEffect } from "react";
 
 
-
-
-const Userboard = () => {
+const Userboard = ({ cpuFire, setCpuFire, turn, setTurn }) => {
 
     const [currentCoordinates, setCurrentCoordinates] = useState([])
     const [userBoardStart, setUserBoardStart] = useState([])
-    const [userFire, setUSerFire] = useState([])
-
 
 
     const tags = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     const verticalTags = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
+
+
+
+    const creatingAramdomCoordinate = () => {
+        const ramdomTags = Math.floor(Math.random() * 9) + 1
+        const tag = tags[ramdomTags]
+        const ramdomVerticalTags = Math.floor(Math.random() * 9) + 1
+        const verticalTag = verticalTags[ramdomVerticalTags]
+
+        const ramdomCoordinate = tag + verticalTag
+
+        return ramdomCoordinate
+    }
+
+    // Hacer useEffect y escuchar cambios en el array de dependencia (turn)   //INVESTIGAR DE SOLID PRINCIPIOS DE PROGRAMACION
+
+    const cpuShoots = (ramdomCoordinate) => {  //esta funcion se ejecuta cuando el cpu me dispara
+        if (cpuFire.some((parameter) => parameter === ramdomCoordinate)) {
+            creatingAramdomCoordinate()
+        }
+        else {
+            setCpuFire([...cpuFire, ramdomCoordinate])
+            setTurn(true)
+        }
+    }
+
+    useEffect(() => {
+        if (turn === false) {
+            cpuShoots()
+        }
+
+    }, [turn])
+
+
+
+
 
 
     const gameBoard = [
@@ -75,7 +107,7 @@ const Userboard = () => {
     const styleFunction = (item) => {
         const currentPlace = currentCoordinates.some((position) => position === item.coordinate)
         const currentPosition = userBoardStart.find((position) => position.coordinate === item.coordinate)
-        const hasBeenShoot = userFire.find((fire) => fire === item.coordinate)
+        const hasBeenShoot = cpuFire.find((fire) => fire === item.coordinate)
 
         if (currentPlace) return 'white'
         if (currentPosition) return currentPosition.color
@@ -86,6 +118,16 @@ const Userboard = () => {
         }
 
     }
+
+    const starGameButton = () => {
+        if (userBoardStart.length !== 15) {
+            alert('You have to position all ships before to start the game')
+        }
+        //  else if (turn) {
+        // }
+        //crear funcion Para cambiar el estado y empezar el juego
+    }
+
 
 
     return (
@@ -112,6 +154,9 @@ const Userboard = () => {
                     <div className="container-purple">
                         <button className="purple-button" onClick={() => functionBoat('purple', 1, currentCoordinates)}>Position Purple Ship</button>
                         <p className="p-purple">Has 1 Coordinate</p>
+                    </div>
+                    <div className="star-game">
+                        <button className="star-game-button" onClick={() => starGameButton()}>Star Game</button>
                     </div>
                 </div>
                 <div className="vertical-tags">
