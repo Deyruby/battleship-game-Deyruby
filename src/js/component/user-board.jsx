@@ -21,32 +21,63 @@ const Userboard = ({ cpuFire, setCpuFire, turn, setTurn }) => {
 
         const ramdomCoordinate = tag + verticalTag
 
+
         return ramdomCoordinate
     }
 
-    // Hacer useEffect y escuchar cambios en el array de dependencia (turn)   //INVESTIGAR DE SOLID PRINCIPIOS DE PROGRAMACION
+    const cpuShoots = () => {  //esta funcion se ejecuta cuando el cpu me dispara
+        let theCoordinate = creatingAramdomCoordinate()
 
-    const cpuShoots = (ramdomCoordinate) => {  //esta funcion se ejecuta cuando el cpu me dispara
-        if (cpuFire.some((parameter) => parameter === ramdomCoordinate)) {
-            creatingAramdomCoordinate()
+        if (!cpuFire.includes(theCoordinate)) {
+            cpuFire.push(theCoordinate)
+
+            setCpuFire([...cpuFire])
+            setTurn(true)
         }
         else {
-            setCpuFire([...cpuFire, ramdomCoordinate])
-            setTurn(true)
+            let newCoordinate = creatingAramdomCoordinate()
+            if (!cpuFire.includes(newCoordinate)) {
+                cpuFire.push(newCoordinate)
+
+                setCpuFire([...cpuFire])
+                setTurn(true)
+            }
+        }
+    }
+
+    console.log('cpufire', cpuFire)
+
+    const winner = () => {
+        let userShips = userBoardStart.map((element) => element.coordinate)
+        console.log('userSHIPS', userShips)
+
+        let containerAll = userShips.every((element) => cpuFire.includes(element)) //debo corregir en userboardstart y comparar solo las coordenadas
+        if (containerAll) {
+            alert('CPU won the Game')
+            setTurn(null)
+
+        }
+        else {
+            cpuShoots()
         }
     }
 
     useEffect(() => {
-        if (turn === false) {
-            cpuShoots()
+        if (turn === false && userBoardStart.length === 15) {
+            winner()
         }
-
     }, [turn])
 
 
 
 
 
+    /*useEffect(() => {
+        if (turn === false) {
+            cpuShoots()
+        }
+
+    }, [turn])*/
 
     const gameBoard = [
         [{ coordinate: "1A", color: 'gray' }, { coordinate: "1B", color: 'gray' }, { coordinate: "1C", color: 'gray' }, { coordinate: "1D", color: 'gray' }, { coordinate: "1E", color: 'gray' }, { coordinate: "1F", color: 'gray' }, { coordinate: "1G", color: 'gray' }, { coordinate: "1H", color: 'gray' }, { coordinate: "1I", color: 'gray' }, { coordinate: "1J", color: 'gray' }],
@@ -109,6 +140,7 @@ const Userboard = ({ cpuFire, setCpuFire, turn, setTurn }) => {
         const currentPosition = userBoardStart.find((position) => position.coordinate === item.coordinate)
         const hasBeenShoot = cpuFire.find((fire) => fire === item.coordinate)
 
+
         if (currentPlace) return 'white'
         if (currentPosition) return currentPosition.color
         if (hasBeenShoot) return 'brown'
@@ -123,8 +155,9 @@ const Userboard = ({ cpuFire, setCpuFire, turn, setTurn }) => {
         if (userBoardStart.length !== 15) {
             alert('You have to position all ships before to start the game')
         }
-        //  else if (turn) {
-        // }
+        else {
+            setTurn(true)
+        }
         //crear funcion Para cambiar el estado y empezar el juego
     }
 

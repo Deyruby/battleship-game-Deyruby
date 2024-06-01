@@ -17,6 +17,11 @@ const cpuBoardInit = [
 const Cpuboard = ({ userFire, setUserFire, turn, setTurn }) => {
 
 	const [cpuBoard, setCpuBoard] = useState(cpuBoardInit)
+	const [ships, setShips] = useState([])
+
+
+
+
 
 
 	useEffect(() => {
@@ -78,17 +83,23 @@ const Cpuboard = ({ userFire, setUserFire, turn, setTurn }) => {
 
 	const cpuCombination = () => {
 		const randomNumber = Math.floor(Math.random() * 5) + 1
-		let setCpuBoardStart = []
-		if (randomNumber === 1) setCpuBoardStart = (firstCpuCombination)
-		if (randomNumber === 2) setCpuBoardStart = (secondCpuCombination)
-		if (randomNumber === 3) setCpuBoardStart = (thirdCpuCombination)
-		if (randomNumber === 4) setCpuBoardStart = (fourthCpuCombination)
-		if (randomNumber === 5) setCpuBoardStart = (fifthCpuCombination)
+		let cpuBoardStart = []
+		if (randomNumber === 1) cpuBoardStart = (firstCpuCombination)
+		if (randomNumber === 2) cpuBoardStart = (secondCpuCombination)
+		if (randomNumber === 3) cpuBoardStart = (thirdCpuCombination)
+		if (randomNumber === 4) cpuBoardStart = (fourthCpuCombination)
+		if (randomNumber === 5) cpuBoardStart = (fifthCpuCombination)
+
+		const shipsArrayCoordinates = cpuBoardStart?.map((element) => element.coordinate)
+		setShips(shipsArrayCoordinates)
+
+
+
 
 		let variable = cpuBoard?.map((row) => {
 			return row?.map((item) => {
 
-				const currentBoat = setCpuBoardStart.find((boat) => boat.coordinate === item.coordinate)
+				const currentBoat = cpuBoardStart.find((boat) => boat.coordinate === item.coordinate)
 				if (currentBoat) {
 					return currentBoat
 				}
@@ -101,8 +112,11 @@ const Cpuboard = ({ userFire, setUserFire, turn, setTurn }) => {
 		setCpuBoard(variable)
 	}
 
-	// EJECUTAR FUNCION SOLO SI EL TURNO ESTA EN TRUE
 
+
+
+	// EJECUTAR FUNCION SOLO SI EL TURNO ESTA EN TRUE
+	// verificar aqui
 	const fire = (item, key, index) => {
 		const currentBox = cpuBoard[key][index]
 		let cpuBoardStyle = [...cpuBoard]
@@ -118,7 +132,6 @@ const Cpuboard = ({ userFire, setUserFire, turn, setTurn }) => {
 			cpuBoardStyle[key][index].color = 'brown'
 
 		}
-
 		const coordinateShooted = userFire.some((parameter) => parameter === item.coordinate)
 		if (coordinateShooted) {
 			alert('Shooted, select another target')
@@ -128,8 +141,6 @@ const Cpuboard = ({ userFire, setUserFire, turn, setTurn }) => {
 		}
 
 		setCpuBoard(cpuBoardStyle)
-		console.log('userFire', userFire)
-
 
 	}
 
@@ -139,6 +150,26 @@ const Cpuboard = ({ userFire, setUserFire, turn, setTurn }) => {
 			setTurn(false)
 		}
 	}
+
+
+	//console.log('ships', ships)
+
+	const toSeeThewinner = () => {
+		let container = ships.every((element) => userFire.includes(element))
+
+		if (container) {
+			alert('USER won the game')
+			setTurn(null)
+			//setCpuBoardStart([])
+		}
+
+	}
+
+	useEffect(() => {
+		if (turn) {
+			toSeeThewinner()
+		}
+	}, [turn])
 
 
 
@@ -163,9 +194,6 @@ const Cpuboard = ({ userFire, setUserFire, turn, setTurn }) => {
 								<tr key={key}>
 									{
 										element.map((item, index) => {
-											//const currentBoat = cpuBoardStart.find((boat) => boat.coordinate === item.coordinate)
-
-											//const hasBeenShoot = userFire.find((fire) => fire === item.coordinate)
 
 											return <td className={`rows`} onClick={() => theTurn(item, key, index)} style={{ backgroundColor: item.color }} key={index} >{item.ocupation}</td>
 

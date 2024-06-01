@@ -10,7 +10,7 @@ const Home = () => {
 
 	const [userFire, setUserFire] = useState([])
 	const [cpuFire, setCpuFire] = useState([])
-	const [turn, setTurn] = useState(true)
+	const [turn, setTurn] = useState(null)
 
 
 
