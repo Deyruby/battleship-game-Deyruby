@@ -2,56 +2,47 @@
 import React, { useState, useEffect } from "react";
 
 
+
+
 const Userboard = ({ cpuFire, setCpuFire, turn, setTurn }) => {
-
-    const [currentCoordinates, setCurrentCoordinates] = useState([])
-    const [userBoardStart, setUserBoardStart] = useState([])
-
 
     const tags = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     const verticalTags = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
 
+    const coordinates = tags.flatMap(element1 => {   // preguntar sobre esto
+        return verticalTags.map(element2 => {
+            return element1 + element2
 
+        })
+    })
 
-    const creatingAramdomCoordinate = () => {
-        const ramdomTags = Math.floor(Math.random() * 9) + 1
-        const tag = tags[ramdomTags]
-        const ramdomVerticalTags = Math.floor(Math.random() * 9) + 1
-        const verticalTag = verticalTags[ramdomVerticalTags]
-
-        const ramdomCoordinate = tag + verticalTag
-
-
-        return ramdomCoordinate
-    }
-
-    const cpuShoots = () => {  //esta funcion se ejecuta cuando el cpu me dispara
-        let theCoordinate = creatingAramdomCoordinate()
-
-        if (!cpuFire.includes(theCoordinate)) {
-            cpuFire.push(theCoordinate)
-
-            setCpuFire([...cpuFire])
-            setTurn(true)
-        }
-        else {
-            let newCoordinate = creatingAramdomCoordinate()
-            if (!cpuFire.includes(newCoordinate)) {
-                cpuFire.push(newCoordinate)
-
-                setCpuFire([...cpuFire])
-                setTurn(true)
-            }
-        }
-    }
+    const [currentCoordinates, setCurrentCoordinates] = useState([])
+    const [userBoardStart, setUserBoardStart] = useState([])
+    const [coordinatesBoard, setCoordinatesBoard] = useState(coordinates)
+    console.log('userBOARDSTART', userBoardStart)
 
     console.log('cpufire', cpuFire)
+
+
+
+    const cpuShoots = () => {
+
+        const randomPosition = Math.floor(Math.random() * coordinatesBoard.length)
+        const randomCoordinate = coordinatesBoard[randomPosition]
+        setCpuFire([...cpuFire, randomCoordinate])
+        const newArray = coordinatesBoard.filter(element => element !== randomCoordinate)
+        setCoordinatesBoard(newArray)
+        setTurn(true)
+    }
+
+
+
 
     const winner = () => {
         let userShips = userBoardStart.map((element) => element.coordinate)
         console.log('userSHIPS', userShips)
 
-        let containerAll = userShips.every((element) => cpuFire.includes(element)) //debo corregir en userboardstart y comparar solo las coordenadas
+        let containerAll = userShips.every((element) => cpuFire.includes(element))
         if (containerAll) {
             alert('CPU won the Game')
             setTurn(null)
@@ -68,16 +59,6 @@ const Userboard = ({ cpuFire, setCpuFire, turn, setTurn }) => {
         }
     }, [turn])
 
-
-
-
-
-    /*useEffect(() => {
-        if (turn === false) {
-            cpuShoots()
-        }
-
-    }, [turn])*/
 
     const gameBoard = [
         [{ coordinate: "1A", color: 'gray' }, { coordinate: "1B", color: 'gray' }, { coordinate: "1C", color: 'gray' }, { coordinate: "1D", color: 'gray' }, { coordinate: "1E", color: 'gray' }, { coordinate: "1F", color: 'gray' }, { coordinate: "1G", color: 'gray' }, { coordinate: "1H", color: 'gray' }, { coordinate: "1I", color: 'gray' }, { coordinate: "1J", color: 'gray' }],
@@ -135,15 +116,26 @@ const Userboard = ({ cpuFire, setCpuFire, turn, setTurn }) => {
     }
 
 
-    const styleFunction = (item) => {
+    const styleFunction = (item, index) => {
         const currentPlace = currentCoordinates.some((position) => position === item.coordinate)
         const currentPosition = userBoardStart.find((position) => position.coordinate === item.coordinate)
         const hasBeenShoot = cpuFire.find((fire) => fire === item.coordinate)
+        const ships = userBoardStart.map((element) => element.coordinate)
+        const isAShip = cpuFire.some(element => ships.includes(element))
+        console.log('isAShip', isAShip)
 
 
         if (currentPlace) return 'white'
-        if (currentPosition) return currentPosition.color
+        if (currentPosition) {
+            if (currentPosition.coordinate == hasBeenShoot) {
+                return 'pink'
+            }
+            return currentPosition.color
+        }
         if (hasBeenShoot) return 'brown'
+
+
+
 
         else {
             return item.color
@@ -211,7 +203,7 @@ const Userboard = ({ cpuFire, setCpuFire, turn, setTurn }) => {
                                     {
                                         element?.map((item, index) => {
 
-                                            return <td className={`rows`} onClick={() => mySuperFunction(item.coordinate)} style={{ backgroundColor: styleFunction(item) }} key={index} />
+                                            return <td className={`rows`} onClick={() => mySuperFunction(item.coordinate)} style={{ backgroundColor: styleFunction(item, index) }} key={index} />
                                         })
                                     }
                                 </tr>)
