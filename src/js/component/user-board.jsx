@@ -9,7 +9,7 @@ const Userboard = ({ cpuFire, setCpuFire, turn, setTurn }) => {
     const tags = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     const verticalTags = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
 
-    const coordinates = tags.flatMap(element1 => {   // preguntar sobre esto
+    const coordinates = tags.flatMap(element1 => {
         return verticalTags.map(element2 => {
             return element1 + element2
 
@@ -122,7 +122,7 @@ const Userboard = ({ cpuFire, setCpuFire, turn, setTurn }) => {
         const hasBeenShoot = cpuFire.find((fire) => fire === item.coordinate)
         const ships = userBoardStart.map((element) => element.coordinate)
         const isAShip = cpuFire.some(element => ships.includes(element))
-        console.log('isAShip', isAShip)
+
 
 
         if (currentPlace) return 'white'

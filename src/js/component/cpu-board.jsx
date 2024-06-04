@@ -112,11 +112,6 @@ const Cpuboard = ({ userFire, setUserFire, turn, setTurn }) => {
 		setCpuBoard(variable)
 	}
 
-
-
-
-	// EJECUTAR FUNCION SOLO SI EL TURNO ESTA EN TRUE
-	// verificar aqui
 	const fire = (item, key, index) => {
 		const currentBox = cpuBoard[key][index]
 		let cpuBoardStyle = [...cpuBoard]
@@ -152,7 +147,7 @@ const Cpuboard = ({ userFire, setUserFire, turn, setTurn }) => {
 	}
 
 
-	//console.log('ships', ships)
+
 
 	const toSeeThewinner = () => {
 		let container = ships.every((element) => userFire.includes(element))
@@ -160,7 +155,7 @@ const Cpuboard = ({ userFire, setUserFire, turn, setTurn }) => {
 		if (container) {
 			alert('USER won the game')
 			setTurn(null)
-			//setCpuBoardStart([])
+
 		}
 
 	}
