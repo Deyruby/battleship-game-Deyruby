@@ -2,31 +2,22 @@ import React, { useState, useEffect } from "react";
 
 
 
-const cpuBoardInit = [
-	[{ coordinate: "1A", ocupation: 0, color: 'gray' }, { coordinate: "1B", ocupation: 0, color: 'gray' }, { coordinate: "1C", ocupation: 0, color: 'gray' }, { coordinate: "1D", ocupation: 0, color: 'gray' }, { coordinate: "1E", ocupation: 0, color: 'gray' }, { coordinate: "1F", ocupation: 0, color: 'gray' }, { coordinate: "1G", ocupation: 0, color: 'gray' }, { coordinate: "1H", ocupation: 0, color: 'gray' }, { coordinate: "1I", ocupation: 0, color: 'gray' }, { coordinate: "1J", ocupation: 0, color: 'gray' }],
-	[{ coordinate: "2A", ocupation: 0, color: 'gray' }, { coordinate: "2B", ocupation: 0, color: 'gray' }, { coordinate: "2C", ocupation: 0, color: 'gray' }, { coordinate: "2D", ocupation: 0, color: 'gray' }, { coordinate: "2E", ocupation: 0, color: 'gray' }, { coordinate: "2F", ocupation: 0, color: 'gray' }, { coordinate: "2G", ocupation: 0, color: 'gray' }, { coordinate: "2H", ocupation: 0, color: 'gray' }, { coordinate: "2I", ocupation: 0, color: 'gray' }, { coordinate: "2J", ocupation: 0, color: 'gray' }],
-	[{ coordinate: "3A", ocupation: 0, color: 'gray' }, { coordinate: "3B", ocupation: 0, color: 'gray' }, { coordinate: "3C", ocupation: 0, color: 'gray' }, { coordinate: "3D", ocupation: 0, color: 'gray' }, { coordinate: "3E", ocupation: 0, color: 'gray' }, { coordinate: "3F", ocupation: 0, color: 'gray' }, { coordinate: "3G", ocupation: 0, color: 'gray' }, { coordinate: "3H", ocupation: 0, color: 'gray' }, { coordinate: "3I", ocupation: 0, color: 'gray' }, { coordinate: "3J", ocupation: 0, color: 'gray' }],
-	[{ coordinate: "4A", ocupation: 0, color: 'gray' }, { coordinate: "4B", ocupation: 0, color: 'gray' }, { coordinate: "4C", ocupation: 0, color: 'gray' }, { coordinate: "4D", ocupation: 0, color: 'gray' }, { coordinate: "4E", ocupation: 0, color: 'gray' }, { coordinate: "4F", ocupation: 0, color: 'gray' }, { coordinate: "4G", ocupation: 0, color: 'gray' }, { coordinate: "4H", ocupation: 0, color: 'gray' }, { coordinate: "4I", ocupation: 0, color: 'gray' }, { coordinate: "4J", ocupation: 0, color: 'gray' }],
-	[{ coordinate: "5A", ocupation: 0, color: 'gray' }, { coordinate: "5B", ocupation: 0, color: 'gray' }, { coordinate: "5C", ocupation: 0, color: 'gray' }, { coordinate: "5D", ocupation: 0, color: 'gray' }, { coordinate: "5E", ocupation: 0, color: 'gray' }, { coordinate: "5F", ocupation: 0, color: 'gray' }, { coordinate: "5G", ocupation: 0, color: 'gray' }, { coordinate: "5H", ocupation: 0, color: 'gray' }, { coordinate: "5I", ocupation: 0, color: 'gray' }, { coordinate: "5J", ocupation: 0, color: 'gray' }],
-	[{ coordinate: "6A", ocupation: 0, color: 'gray' }, { coordinate: "6B", ocupation: 0, color: 'gray' }, { coordinate: "6C", ocupation: 0, color: 'gray' }, { coordinate: "6D", ocupation: 0, color: 'gray' }, { coordinate: "6E", ocupation: 0, color: 'gray' }, { coordinate: "6F", ocupation: 0, color: 'gray' }, { coordinate: "6G", ocupation: 0, color: 'gray' }, { coordinate: "6H", ocupation: 0, color: 'gray' }, { coordinate: "6I", ocupation: 0, color: 'gray' }, { coordinate: "6J", ocupation: 0, color: 'gray' }],
-	[{ coordinate: "7A", ocupation: 0, color: 'gray' }, { coordinate: "7B", ocupation: 0, color: 'gray' }, { coordinate: "7C", ocupation: 0, color: 'gray' }, { coordinate: "7D", ocupation: 0, color: 'gray' }, { coordinate: "7E", ocupation: 0, color: 'gray' }, { coordinate: "7F", ocupation: 0, color: 'gray' }, { coordinate: "7G", ocupation: 0, color: 'gray' }, { coordinate: "7H", ocupation: 0, color: 'gray' }, { coordinate: "7I", ocupation: 0, color: 'gray' }, { coordinate: "7J", ocupation: 0, color: 'gray' }],
-	[{ coordinate: "8A", ocupation: 0, color: 'gray' }, { coordinate: "8B", ocupation: 0, color: 'gray' }, { coordinate: "8C", ocupation: 0, color: 'gray' }, { coordinate: "8D", ocupation: 0, color: 'gray' }, { coordinate: "8E", ocupation: 0, color: 'gray' }, { coordinate: "8F", ocupation: 0, color: 'gray' }, { coordinate: "8G", ocupation: 0, color: 'gray' }, { coordinate: "8H", ocupation: 0, color: 'gray' }, { coordinate: "8I", ocupation: 0, color: 'gray' }, { coordinate: "8J", ocupation: 0, color: 'gray' }],
-	[{ coordinate: "9A", ocupation: 0, color: 'gray' }, { coordinate: "9B", ocupation: 0, color: 'gray' }, { coordinate: "9C", ocupation: 0, color: 'gray' }, { coordinate: "9D", ocupation: 0, color: 'gray' }, { coordinate: "9E", ocupation: 0, color: 'gray' }, { coordinate: "9F", ocupation: 0, color: 'gray' }, { coordinate: "9G", ocupation: 0, color: 'gray' }, { coordinate: "9H", ocupation: 0, color: 'gray' }, { coordinate: "9I", ocupation: 0, color: 'gray' }, { coordinate: "9J", ocupation: 0, color: 'gray' }],
-	[{ coordinate: "10A", ocupation: 0, color: 'gray' }, { coordinate: "10B", ocupation: 0, color: 'gray' }, { coordinate: "10C", ocupation: 0, color: 'gray' }, { coordinate: "10D", ocupation: 0, color: 'gray' }, { coordinate: "10E", ocupation: 0, color: 'gray' }, { coordinate: "10F", ocupation: 0, color: 'gray' }, { coordinate: "10G", ocupation: 0, color: 'gray' }, { coordinate: "10H", ocupation: 0, color: 'gray' }, { coordinate: "10I", ocupation: 0, color: 'gray' }, { coordinate: "10J", ocupation: 0, color: 'gray' }],
-]
-const Cpuboard = ({ userFire, setUserFire, turn, setTurn }) => {
 
-	const [cpuBoard, setCpuBoard] = useState(cpuBoardInit)
+const Cpuboard = ({ initialState, userFire, setUserFire, turn, setTurn }) => {
+
+	const [cpuBoard, setCpuBoard] = useState(initialState?.cpuBoardInit)
 	const [ships, setShips] = useState([])
 
 
-
-
-
-
 	useEffect(() => {
-		cpuCombination()
-	}, [])
+		if (turn === null) {
+			setUserFire([])
+			setCpuBoard(initialState?.cpuBoardInit)
+			cpuCombination()
+
+		}
+
+	}, [turn])
 
 
 	const tags = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -96,7 +87,7 @@ const Cpuboard = ({ userFire, setUserFire, turn, setTurn }) => {
 
 
 
-		let variable = cpuBoard?.map((row) => {
+		let variable = initialState?.cpuBoardInit?.map((row) => {
 			return row?.map((item) => {
 
 				const currentBoat = cpuBoardStart.find((boat) => boat.coordinate === item.coordinate)
@@ -110,6 +101,7 @@ const Cpuboard = ({ userFire, setUserFire, turn, setTurn }) => {
 			})
 		})
 		setCpuBoard(variable)
+
 	}
 
 	const fire = (item, key, index) => {
@@ -127,26 +119,23 @@ const Cpuboard = ({ userFire, setUserFire, turn, setTurn }) => {
 			cpuBoardStyle[key][index].color = 'brown'
 
 		}
-		const coordinateShooted = userFire.some((parameter) => parameter === item.coordinate)
-		if (coordinateShooted) {
-			alert('Shooted, select another target')
-		}
-		else {
-			setUserFire([...userFire, item.coordinate])
-		}
 
+		setUserFire([...userFire, item.coordinate])
 		setCpuBoard(cpuBoardStyle)
-
 	}
 
+
+
 	const theTurn = (item, key, index) => {
-		if (turn) {
+		if (turn && !userFire.includes(item.coordinate)) {
 			fire(item, key, index)
 			setTurn(false)
 		}
+		else {
+			if (turn && userFire.includes(item.coordinate)) alert('Shooted, select another target')
+
+		}
 	}
-
-
 
 
 	const toSeeThewinner = () => {
@@ -155,6 +144,7 @@ const Cpuboard = ({ userFire, setUserFire, turn, setTurn }) => {
 		if (container) {
 			alert('USER won the game')
 			setTurn(null)
+
 
 		}
 
@@ -184,13 +174,13 @@ const Cpuboard = ({ userFire, setUserFire, turn, setTurn }) => {
 						}
 					</thead>
 					<tbody>
-						{cpuBoard.map((element, key) => {
+						{cpuBoard?.map((element, key) => {
 							return (
 								<tr key={key}>
 									{
 										element.map((item, index) => {
 
-											return <td className={`rows`} onClick={() => theTurn(item, key, index)} style={{ backgroundColor: item.color }} key={index} >{item.ocupation}</td>
+											return <td className={`rows`} onClick={() => theTurn(item, key, index)} style={{ backgroundColor: item.color }} key={index} ></td>
 
 										})
 									}
