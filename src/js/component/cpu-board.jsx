@@ -194,7 +194,7 @@ const Cpuboard = ({ userFire, setUserFire, turn, setTurn }) => {
 									{
 										element.map((item, index) => {
 
-											return <td className={`rows`} onClick={() => theTurn(item, key, index)} style={{ backgroundColor: item.color }} key={index} > {item.ocupation} </td>
+											return <td className={`rows`} onClick={() => theTurn(item, key, index)} style={{ backgroundColor: item.color }} key={index} ></td>
 
 										})
 									}
